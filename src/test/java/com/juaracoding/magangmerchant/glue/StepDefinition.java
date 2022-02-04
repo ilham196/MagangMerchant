@@ -13,6 +13,7 @@ import com.juaracoding.magangmerchant.page.LoginPage;
 import com.juaracoding.magangmerchant.page.MonitoringMD;
 import com.juaracoding.magangmerchant.page.ReceivedQR;
 import com.juaracoding.magangmerchant.page.SendQR;
+import com.juaracoding.magangmerchant.page.UploadJO;
 import com.juaracoding.magangmerchant.page.Validasi;
 import com.juaracoding.magangmerchant.page.Worklist;
 import com.juaracoding.magangmerchant.utils.ConfigurationProperties;
@@ -37,6 +38,7 @@ public class StepDefinition {
 
 	private WebDriver driver;
 	private LoginPage loginPage;
+	private UploadJO uploadJOPage;
 	private SendQR sendQR;
 	private ReceivedQR receivedQR;
 	private DeliverytoMD deliverytoMD;
@@ -55,14 +57,15 @@ public class StepDefinition {
 	public void initializeObject() {
 		DriverSingleton.getInstance(configProperties.getBrowser());
 		loginPage = new LoginPage();
-		sendQR = new SendQR();
-		receivedQR = new ReceivedQR();
-		deliverytoMD = new DeliverytoMD();
-		distribusiPage = new Distribusi();
-		worklistPage = new Worklist();
-		validasiPage = new Validasi();
-		completedData = new CompletedData();
-		monitoringMD = new MonitoringMD();
+		uploadJOPage = new UploadJO();
+//		sendQR = new SendQR();
+//		receivedQR = new ReceivedQR();
+//		deliverytoMD = new DeliverytoMD();
+//		distribusiPage = new Distribusi();
+//		worklistPage = new Worklist();
+//		validasiPage = new Validasi();
+//		completedData = new CompletedData();
+//		monitoringMD = new MonitoringMD();
 		TestCases[] tests = TestCases.values();
 		extentTest = report.startTest(tests[Utils.testCount].getTestName());
 		Utils.testCount++;
@@ -88,6 +91,31 @@ public class StepDefinition {
 			extentTest.log(LogStatus.PASS, "User can login to the Website");
 		}
 		
+		//MODUL UPLOAD JO
+		
+		@Given("^User go to Upload Jo page")
+		public void user_go_to_upload_JO_page() {
+			uploadJOPage.gotoUploadJO();
+			extentTest.log(LogStatus.PASS, "User go to Upload Jo page");
+		}
+		
+		@When("^User can go Tabel Data Upload JO")
+		public void user_can_go_tabel_data_upload_JO() {
+			uploadJOPage.TabelUploadJO();
+			extentTest.log(LogStatus.PASS, "User can go Tabel Data Upload JO");
+		}
+		
+		@When("^User can Upload Data excel")
+		public void user_can_upload_data_excel() {
+			uploadJOPage.UploadData(configProperties.getSearchJO());
+			extentTest.log(LogStatus.PASS, "User can Upload Data excel");
+		}
+		
+		@Then("^User update data success")
+		public void user_update_data_success() {
+			extentTest.log(LogStatus.PASS, "User update data success");
+		}
+		
 		//MODUL SEND QR
 		@Given("^User go to Send QR page")
 		public void user_go_to_send_QR_page() {
@@ -105,7 +133,7 @@ public class StepDefinition {
 		public void user_can_received_QR_data() {
 			extentTest.log(LogStatus.PASS, "User can Received QR data");
 		}
-		
+	
 		//Received QR
 		@Given("^User go to Received QR page")
 		public void user_go_to_received_QR_page() {
@@ -115,7 +143,7 @@ public class StepDefinition {
 		
 		@When("^User can action data Received")
 		public void user_can_action_data_received() {
-			receivedQR.ReceivedQR(configProperties.getSearchQR());
+			receivedQR.ReceivedQR(configProperties.getSearchReceived());
 			extentTest.log(LogStatus.PASS, "User can action data Received");
 		}
 		
@@ -187,7 +215,7 @@ public class StepDefinition {
 		//MODUL Monitoring MD
 		@When("^User can go Monitoring MD page and Action button")
 		public void user_can_go_monitoring_MD_page_and_action_button() {
-			monitoringMD.MonitoringMD();
+			monitoringMD.MonitoringMD(configProperties.getTanggalawal(), configProperties.getTanggalakhir());
 			extentTest.log(LogStatus.PASS, "User can go Monitoring MD page and Action button");
 		}
 		
@@ -219,6 +247,7 @@ public class StepDefinition {
 		public void user_can_submit_data_form() {
 			extentTest.log(LogStatus.PASS, "User can Submit Data Form");
 		}
+		
 	
 	@After
 	public void closeObject() {

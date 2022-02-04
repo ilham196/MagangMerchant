@@ -88,31 +88,61 @@ public class Validasi {
 	@FindBy(xpath = "//*[@id=\"Return\"]/div/div/form/div[2]/input")
 	private WebElement txtketerangansave;
 	
+	public void tunda() {
+		try {
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
 	public void gotoValidasi() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Validasi.click();
+		tunda();
 		btnAction.click();
+		tunda();
 		js.executeScript("window.scrollBy(0,500)");
-////		fotoTampakDekat.click();
-//		btnfotoTampakDekat.click();
-//		fotoTampakJauh.click();
-//		btnfotoTampakJauh.click();
-//		js.executeScript("window.scrollBy(0,500)");
-//		fotoTransaksiSakuku.click();
-//		btnTampilanfotoTransaksiSakuku.click();
-//		TransaksiNonSakuku.click();
-//		btnfotoTransaksiNonSakuku.click();
-//		js.executeScript("window.scrollBy(0,500)");
-//		fotodepantoko.click();
-//		btnfotodepantoko.click();
-//		fototampakdalamtoko.click();
-//		btnfototampakdalemtoko.click();
-//		fototampasampingtoko.click();
-//		btnfototampaksampingtoko.click();
+		/*
+		fotoTampakDekat.click();
+		tunda();
+		btnfotoTampakDekat.click();
+		tunda();
+		fotoTampakJauh.click();
+		tunda();
+		btnfotoTampakJauh.click();
+		tunda();
 		js.executeScript("window.scrollBy(0,500)");
-//		btnkembali.click();
-//		btnapprove.click();
+		fotoTransaksiSakuku.click();
+		tunda();
+		btnTampilanfotoTransaksiSakuku.click();
+		tunda();
+		TransaksiNonSakuku.click();
+		tunda();
+		btnfotoTransaksiNonSakuku.click();
+		tunda();
+		js.executeScript("window.scrollBy(0,500)");
+		fotodepantoko.click();
+		tunda();
+		btnfotodepantoko.click();
+		tunda();
+		fototampakdalamtoko.click();
+		tunda();
+		btnfototampakdalemtoko.click();
+		tunda();
+		fototampasampingtoko.click();
+		tunda();
+		btnfototampaksampingtoko.click();
+		tunda();
+		js.executeScript("window.scrollBy(0,500)");
+		btnkembali.click();
+		tunda();
+		btnapprove.click();
+		tunda();
+		*/
 		btnreturn.click();
+		tunda();
 		btnreturnclose.click();
+		tunda();
 	}
 }

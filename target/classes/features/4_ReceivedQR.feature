@@ -1,4 +1,4 @@
-Feature: Wordpress Send QR
+Feature: Wordpress Received QR
 
 Scenario: Testing Received QR page
 	Given User go to Received QR page

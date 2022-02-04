@@ -36,17 +36,29 @@ private WebDriver driver;
 //	@FindBy(css ="#exampleModal > div > div > div.modal-footer > button")
 	private WebElement btnClose;
 	
+	public void tunda() {
+		try {
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
 	public void gotoLogin(String username, String password) {
 		txtUsername.sendKeys(username);
+		tunda();
 		txtPassword.sendKeys(password);
+		tunda();
 		btnSubmit.click();
 	}
 	
 	public void clikClose() {
 		gambar.click();
+		tunda();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 //		js.executeScript("window.scrollBy(0,500)");
 		btnClose.click();
+		tunda();
 	}
 
 }

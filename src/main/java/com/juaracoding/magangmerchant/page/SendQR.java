@@ -1,9 +1,11 @@
 package com.juaracoding.magangmerchant.page;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.juaracoding.magangmerchant.driver.DriverSingleton;
@@ -51,17 +53,69 @@ public class SendQR {
 	@FindBy(css = "#modalFoto > div > div > div.modal-header > button")
 	private WebElement btnCloseView;
 	
+	@FindBy(css = "#data-customers-approve_length > label > select")
+	private WebElement btnShow;
+	
+	@FindBy(css = "#data-customers-approve_paginate > ul > li:nth-child(3) > a")
+	private WebElement btngotoPage;
+	
+	@FindBy(css = "#data-customers-approve_next > a")
+	private WebElement btnNextPage;
+	
+	@FindBy(css = "#data-customers-approve_previous > a")
+	private WebElement btnPrevPage;
+	
+	public void tunda() {
+		try {
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
 	public void gotoSendQR() {
 		btnDecision.click();
+		tunda();
 		btnSendQR.click();
+		tunda();
 	}
 	
 	public void SendQR(String searchQR) {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		txtSearching.click();
 		txtSearching.sendKeys(searchQR);
+		tunda();
 		btnSearch.click();
+		tunda();
+		btnAction.click();
+		tunda();
 		btnView.click();
+		tunda();
 		btnCloseView.click();
+		tunda();
+		btnViewDetail.click();
+		tunda();
+		js.executeScript("window.scrollBy(0,500)");
+		btnViewDetail2.click();
+		tunda();
+		btnCloseViewDetail.click();
+		tunda();
+		driver.navigate().back();
+		tunda();
+		js.executeScript("window.scrollBy(0,1000)");
+		btngotoPage.click();
+		tunda();
+		btnNextPage.click();
+		tunda();
+		btnPrevPage.click();
+		btnPrevPage.click();
+		tunda();
+		js.executeScript("window.scrollBy(0,-1000)");
+		new Select(btnShow).selectByValue("25");
+		tunda();
+		btnAction.click();
+		tunda();
 		btnReceived.click();
 	}
 }

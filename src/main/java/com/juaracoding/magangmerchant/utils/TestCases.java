@@ -3,14 +3,15 @@ package com.juaracoding.magangmerchant.utils;
 public enum TestCases {
 
 	T1("Testing the authentication"),
-	T2("Testing Send QR page"),
-	T3("Testing Received QR page"),
-	T4("Testing Delivery to MD page"),
-	T5("Testing Distribusi page"),
-	T6("Testing Worklist New Data page"),
-	T7("Testing Monitoring MD page"),
-	T8("Testing Completed Data page"),
-	T9("Testing Monitoring MD page");
+	T2("Testing Upload JO Page");
+//	T3("Testing Send QR page"),
+//	T4("Testing Received QR page"),
+	/*T5("Testing Delivery to MD page"),
+	T6("Testing Distribusi page"),
+	T7("Testing Worklist New Data page"),
+	T8("Testing Monitoring MD page"),
+	T9("Testing Completed Data page"),
+	T10("Testing Monitoring MD page"); */
 	
 	private String testName;
 	

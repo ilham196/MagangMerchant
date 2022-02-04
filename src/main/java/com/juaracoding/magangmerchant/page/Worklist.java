@@ -1,6 +1,7 @@
 package com.juaracoding.magangmerchant.page;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,6 +45,9 @@ public class Worklist {
 	private WebElement btnActionReturned;
 	
 //	WORKLIST NEW DATA
+	@FindBy(xpath = "//*[@id=\"data-worklist_filter\"]/label/input")
+	private WebElement txtSearch;
+	
 	@FindBy(name = "data-worklist_length")
 	private WebElement showEntries;
 	
@@ -139,8 +143,9 @@ public class Worklist {
 	@FindBy(css = "#form_survey > div:nth-child(5) > textarea")
 	private WebElement txtKeterangan;
 	
+	
 	//SEARCH DATA PITIX
-	@FindBy(xpath = "//*[@id=\"content\"]/h1/button")
+	@FindBy(xpath = "//*[@id=\"content\"]/h1/button") 
 	private WebElement btnSearch1;
 	
 	@FindBy(css = "#searchinput")
@@ -170,13 +175,39 @@ public class Worklist {
 	@FindBy(xpath = "//*[@id=\"form_survey\"]/footer/a")
 	private WebElement btnCloseNewData;
 	
+	public void tunda() {
+		try {
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
 	public void gotoWorklistNewData() {
 		btnWorklist.click();
 		btnNewData.click();
+		tunda();
 	}
 	
 	public void WorklistNewData() {
-		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,1000)");
+		btngotoPage.click();
+		tunda();
+		btnNext.click();
+		tunda();
+		btnPrevious.click();
+		btnPrevious.click();
+		tunda();
+		js.executeScript("window.scrollBy(0,1000)");
+		tunda();
+		new Select(showEntries).selectByValue("25");
+		tunda();
+		txtSearch.click();
+		txtSearch.sendKeys("Tangerang");
+		txtSearch.sendKeys(Keys.ENTER);
+		tunda();
+
 	}
 	
 	public void gotoFormDelivery(String search1) {
@@ -187,44 +218,59 @@ public class Worklist {
 		//Search Form Delivery
 		btnSearch1.click();
 		txtSearch1.sendKeys(search1);
+		tunda();
 		btnSubmitSearch.click();
 		js.executeScript("window.scrollBy(0,500)");
 		btnNextSearch.click();
+		tunda();
 		btnPrevSearch.click();
+		tunda();
 		btnPage2Search.click();
+		tunda();
 		btnPrevSearch.click();
+		tunda();
 //		js.executeScript("window.scrollBy(0,-500)");
 		btnCloseSearch.click();
+		tunda();
 		
 		//Form Delivery Data Upload Foto
 		btnWA.click();
 		driver.navigate().back();
 		js.executeScript("window.scrollBy(0,500)");
+		tunda();
 		drpdownStatus.click();
 		new Select(drpdownStatus).selectByValue("118-Sukses");
 		js.executeScript("window.scrollBy(0,500)");
+		tunda();
 		fotoQRTampakDekat.click();
 		uploadFile1.sendKeys("E:\\Java\\1.PNG");
 		btnSave1.click();
+		tunda();
 		fotoQRTampakJauh.click();
 		uploadFile2.sendKeys("E:\\Java\\1.PNG");
 		btnSave2.click();
+		tunda();
 		fotoQRTransSakuku.click();
 		uploadFile3.sendKeys("E:\\Java\\1.PNG");
 		btnSave3.click();
+		tunda();
 		fotoQRTransNonSakuku.click();
 		uploadFile4.sendKeys("E:\\Java\\1.PNG");
 		btnSave4.click();
+		tunda();
 		fotoQRTampakDepan.click();
 		uploadFile5.sendKeys("E:\\Java\\1.PNG");
 		btnSave5.click();
+		tunda();
 		js.executeScript("window.scrollBy(0,500)");
 		fotoQRTampakDalam.click();
 		uploadFile6.sendKeys("E:\\Java\\1.PNG");
 		btnSave6.click();
+		tunda();
 		fotoQRTampakSamping.click();
 		uploadFile6.sendKeys("E:\\Java\\1.PNG");
 		btnSave6.click();
-		btnSubmitNewData.click();	
+		tunda();
+//		btnSubmitNewData.click();	
 	}
 }

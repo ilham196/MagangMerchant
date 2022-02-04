@@ -35,6 +35,35 @@ public class ConfigurationProperties {
 	@Value("${searchqr}")
 	private String searchQR;
 	
+	@Value("${searchjo}")
+	private String searchJO;
+	
+	@Value("${searchrec}")
+	private String searchRec;
+	
+	@Value("${tanggalawal}")
+	private String tanggalawal;
+	
+	@Value("${tanggalakhir}")
+	private String tanggalakhir;
+
+	public String getTanggalawal() {
+		return tanggalawal;
+	}
+
+
+	public String getTanggalakhir() {
+		return tanggalakhir;
+	}
+	
+	public String getSearchReceived() {
+		return searchRec;
+	}
+	
+	public String getSearchJO() {
+		return searchJO;
+	}
+	
 	public String getSearchQR() {
 		return searchQR;
 	}
